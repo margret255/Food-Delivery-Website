@@ -1,3 +1,26 @@
+ 
+    header .logo h1 {
+      color: #fff;
+      font-size: 2em;
+    }
+
+    header .nav ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    header .nav ul li {
+      margin: 0 20px;
+    }
+
+    header .nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+
  .categories {
       padding: 40px 20px;
       background-color: #f9f9f9;
@@ -107,7 +130,7 @@
       text-align: center;
       padding: 20px 0;
     }
-    <style>
+
 .category-card {
     display: inline-block;
     text-align: center;
