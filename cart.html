@@ -4,50 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cart.css">
 </head>
 <body>
     <h1>Your Cart</h1>
     <div id="cart-items"></div>
-    <h2 id="total"></h2>
-    <button onclick="clearCart()">Clear Cart</button>
-    <a href="index.html">Back to Menu</a>
+<h2 id="total"></h2>
+<button onclick="clearCart()">Clear Cart</button>
+<a href="home.html">Back to Menu</a>
 
-    <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        function displayCart() {
-            const container = document.getElementById('cart-items');
-            container.innerHTML = '';
-            let totalPrice = 0;
+function displayCart() {
+    const container = document.getElementById('cart-items');
+    container.innerHTML = '';
+    let totalPrice = 0;
 
-            cart.forEach((item, index) => {
-                totalPrice += item.price;
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <p>${item.name} - $${item.price}</p>
-                    <button onclick="removeItem(${index})">Remove</button>
-                `;
-                container.appendChild(div);
-            });
+    cart.forEach((item, index) => {
+        totalPrice += item.price * item.quantity;
 
-            document.getElementById('total').innerText = "Total: $" + totalPrice;
-        }
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <p>${item.name}</p>
+                <p>Price: $${item.price}</p>
+                <p>Quantity: ${item.quantity}</p>
+            </div>
+            <button onclick="removeItem(${index})">Remove</button>
+        `;
+        container.appendChild(div);
+    });
 
-        function removeItem(index) {
-            cart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            displayCart();
-        }
+    document.getElementById('total').innerText = "Total: $" + totalPrice;
+}
 
-        function clearCart() {
-            cart = [];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            displayCart();
-        }
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
+}
 
-        displayCart();
-    </script>
+function clearCart() {
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
+}
+
+displayCart();
+</script>
+
 </body>
 </html>
