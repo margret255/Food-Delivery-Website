@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart</title>
-    <link rel="stylesheet" href="cart.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart</title>
+<link rel="stylesheet" href="cart.css">
 </head>
 <body>
+
+<div class="cart-wrapper">
     <h1>Your Cart</h1>
+
     <div id="cart-items"></div>
-<h2 id="total"></h2>
-<button onclick="clearCart()">Clear Cart</button>
-<a href="home.html">Back to Menu</a>
+
+    <div class="cart-summary">
+        <h2 id="total">Total: $0</h2>
+        <div class="cart-actions">
+            <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+            <a href="home.html" class="back-menu">Back to Menu</a>
+        </div>
+    </div>
+</div>
 
 <script>
+// Load cart from localStorage or create empty
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function displayCart() {
-    const container = document.getElementById('cart-items');
-    container.innerHTML = '';
-    let totalPrice = 0;
+// Add an item (example usage: from menu page)
+// addToCart({name:'Coca Cola', price:2.5, image:'images/coke.jpg'});
 
-    cart.forEach((item, index) => {
-        totalPrice += item.price * item.quantity;
-
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="item-details">
-                <p>${item.name}</p>
-                <p>Price: $${item.price}</p>
-                <p>Quantity: ${item.quantity}</p>
-            </div>
-            <button onclick="removeItem(${index})">Remove</button>
-        `;
-        container.appendChild(div);
-    });
-
-    document.getElementById('total').innerText = "Total: $" + totalPrice;
+function addToCart(item) {
+    const existing = cart.find(i => i.name === item.name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        item.quantity = 1;
+        cart.push(item);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
 }
 
 function removeItem(index) {
@@ -53,6 +53,41 @@ function clearCart() {
     displayCart();
 }
 
+function displayCart() {
+    const container = document.getElementById('cart-items');
+    container.innerHTML = '';
+
+    if (cart.length === 0) {
+        container.innerHTML = "<p class='empty'>Your cart is empty.</p>";
+        document.getElementById('total').innerText = "Total: $0";
+        return;
+    }
+
+    let totalPrice = 0;
+
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            <img src="${item.image || 'images/default.jpg'}" alt="${item.name}">
+            <div class="item-details">
+                <h3>${item.name}</h3>
+                <p>Unit Price: $${item.price}</p>
+                <p class="qty">Quantity: <strong>${item.quantity}</strong></p>
+                <p class="item-total">Item Total: $${itemTotal.toFixed(2)}</p>
+            </div>
+            <button onclick="removeItem(${index})">✕</button>
+        `;
+        container.appendChild(div);
+    });
+
+    document.getElementById('total').innerText = `Total: $${totalPrice.toFixed(2)}`;
+}
+
+// Initialize display on page load
 displayCart();
 </script>
 
