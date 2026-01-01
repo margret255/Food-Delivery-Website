@@ -1,34 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Cart</title>
-<link rel="stylesheet" href="cart.css">
-</head>
-<body>
-
-<div class="cart-wrapper">
-    <h1>Your Cart</h1>
-
-    <div id="cart-items"></div>
-
-    <div class="cart-summary">
-        <h2 id="total">Total: $0</h2>
-        <div class="cart-actions">
-            <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
-            <a href="home.html" class="back-menu">Back to Menu</a>
-        </div>
-    </div>
-</div>
-
-<script>
-// Load cart from localStorage or create empty
+// Load cart from localStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Add an item (example usage: from menu page)
-// addToCart({name:'Coca Cola', price:2.5, image:'images/coke.jpg'});
-
+// Add an item
 function addToCart(item) {
     const existing = cart.find(i => i.name === item.name);
     if (existing) {
@@ -38,23 +11,28 @@ function addToCart(item) {
         cart.push(item);
     }
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCart();
+    alert(`${item.name} added to cart!`);
 }
 
+// Remove item
 function removeItem(index) {
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
     displayCart();
 }
 
+// Clear cart
 function clearCart() {
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     displayCart();
 }
 
+// Display cart
 function displayCart() {
     const container = document.getElementById('cart-items');
+    if (!container) return; // in menu page, skip display
+
     container.innerHTML = '';
 
     if (cart.length === 0) {
@@ -87,15 +65,5 @@ function displayCart() {
     document.getElementById('total').innerText = `Total: $${totalPrice.toFixed(2)}`;
 }
 
-// Initialize display on page load
+// Initialize display when cart.html loads
 displayCart();
-function goToPayment() {
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-    }
-    window.location.href = "payment.html";
-</script>
-
-</body>
-</html>
