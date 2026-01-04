@@ -79,7 +79,7 @@ body {
 <script>
 // Load cart and calculate total
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let total = 0;
+let total = 0; 
 
 cart.forEach(item => {
     total += item.price * item.quantity;
