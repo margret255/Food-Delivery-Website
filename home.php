@@ -107,7 +107,11 @@ $username = $_SESSION['username']; // get username from session
   <section id="contact" class="contact-section">
     <h3>Contact Us</h3>
     <p>If you have any questions or feedback, feel free to reach out to us!</p>
-    <form action="#" method="POST" class="contact-form">
+    <?php if (isset($_GET['contact']) && $_GET['contact'] === 'success'): ?>
+  <p class="success-message">Thank you! Your message has been sent.</p>
+<?php endif; ?>
+    <form action="submit_contact.php" method="POST" class="contact-form">
+
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your name" required>
