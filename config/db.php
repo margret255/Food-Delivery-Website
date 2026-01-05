@@ -1,13 +1,12 @@
 <?php
-$servername = "localhost";
-$db_username = "appuser";      // the MySQL user you created
-$db_password = "StrongPass123"; // password for that user
-$db_name = "food_delivery";
+$host = "localhost";
+$user = "appuser";
+$password = "app123";
+$database = "food_delivery";
 
-$conn = new mysqli($servername, $db_username, $db_password, $db_name);
+$conn = new mysqli($host, $user, $password, $database);
 
 if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
-
