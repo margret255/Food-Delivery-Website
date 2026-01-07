@@ -23,13 +23,17 @@
   </header>
 
   <!-- Main Banner Section -->
-  <section id="home" class="main-banner">
-    <div class="banner-content">
-      <h2>Order Your Favorite Food in Just a Few Minutes!</h2>
-      <input type="text" id="searchBar" placeholder="Search for restaurants or food..." class="search-bar">
-      <button class="btn" onclick="searchItems()">Search</button>
-    </div>
-  </section>
+<section id="home" class="main-banner">
+  <div class="banner-content">
+    <h2>Order Fresh Snacks & Fast Food in Minutes</h2>
+    <input
+      type="text"
+      id="searchBar"
+      placeholder="Search for snacks, fast food, or drinks..."
+      class="search-bar">
+    <button class="btn" onclick="searchItems()">Search</button>
+  </div>
+</section>
 
   <!-- Popular Categories Section -->
   <section id="categories" class="categories">
@@ -76,7 +80,7 @@
 
   <section id="campus-map">
     <h3>Where Can We Find You?</h3>
-    <p>Pin your location, and we will bring your cravings straight to your doorstep! Fast, fresh, and delivered right where you need it!</p>
+    <p>We deliver within the campus area shown on the map!</p>
   
     <div id="map-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15959.229036663422!2d37.7083238!3d0.1349155!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17883c967d5c1517%3A0x94e1dbf4dfea47bd!2sMeru%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2ske!4v1733664063930!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -84,6 +88,38 @@
   
     
   </section>
+<section class="delivery-section">
+  <h3>Delivery Location</h3>
+  <p class="delivery-subtext">
+    Choose a nearby landmark to help us deliver faster and more accurately.
+  </p>
+
+  <div class="delivery-form">
+    <div class="form-group">
+      <label for="delivery_location">Select Location</label>
+      <select id="delivery_location" name="delivery_location" required>
+        <option value="">-- Choose delivery point --</option>
+        <option value="Main Gate">Main Gate</option>
+        <option value="Girls Hostel">Girls Hostel</option>
+        <option value="Boys Hostel">Boys Hostel</option>
+        <option value="Library">Library</option>
+        <option value="Cafeteria">Cafeteria</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="delivery_notes">Extra Directions (Optional)</label>
+      <input
+        type="text"
+        id="delivery_notes"
+        name="delivery_notes"
+        placeholder="e.g. Near Mevan"
+      >
+    </div>
+  </div>
+</section>
+
+
   
 
   <!-- Contact Section -->
@@ -367,10 +403,62 @@
       // Add more items for other categories as needed
     }
 
-    function searchItems() {
-      const searchQuery = document.getElementById('searchBar').value.toLowerCase();
-      alert('Searching for: ' + searchQuery); // Replace with actual search functionality
-    }
+    
+function searchItems() {
+  const query = document.getElementById("searchBar").value.trim().toLowerCase();
+
+  if (!query) return;
+
+  const result = foodIndex.find(item =>
+    item.name.includes(query)
+  );
+
+  if (result) {
+    window.location.href = result.page + "?search=" + query;
+  } else {
+    alert("Sorry, we couldn’t find that item.");
+  }
+}
+
+
+
+
+
+const foodIndex = [
+  { name: "Water", page: "drinks.html" },
+  { name: "Predators", page: "drinks.html" },
+  { name: "Minute Maid", page: "drinks.html" },
+  { name: "Monster", page: "drinks.html" },
+  { name: "RedBull", page: "drinks.html" },
+  { name: "FruitJuice", page: "drinks.html" },
+
+  { name: "Smocha", page: "fast.html" },
+  { name: "ChipChap", page: "fast.html" },
+  { name: "Shawarma", page: "fast.html" },
+  { name: "Smokie", page: "fast.html" },
+  { name: "Kebabs", page: "fast.html" },
+    { name: "Vegan", page: "fast.html" },
+
+
+  { name: "Wow Sugared", page: "snacks.html" },
+  { name: "Crisps", page: "snacks.html" },
+  { name: "Chevda", page: "snacks.html" },
+  { name: "Spicy Ganthia", page: "snacks.html" },
+  { name: "Popcorns", page: "snacks.html" },
+    { name: "Cookies", page: "snacks.html" },
+
+      { name: "Wow Sugared", page: "snacks.html" },
+  { name: "Crisps", page: "snacks.html" },
+  { name: "Chevda", page: "snacks.html" },
+  { name: "Spicy Ganthia", page: "snacks.html" },
+  { name: "Popcorns", page: "snacks.html" },
+    { name: "Cookies", page: "snacks.html" },
+
+];
+
+
+
+    
   </script>
 </body>
 </html>

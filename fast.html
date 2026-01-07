@@ -106,7 +106,26 @@
       <p>&copy; 2025 Foodie - All Rights Reserved</p>
     </div>
   </footer>
+  <script>
   
+window.onload = () => {
+  const params = new URLSearchParams(window.location.search);
+  const search = params.get("search");
+
+  if (!search) return;
+
+  const items = document.querySelectorAll(".category, .food-item");
+
+  items.forEach(item => {
+    if (item.innerText.toLowerCase().includes(search)) {
+      item.style.border = "2px solid #ff9800";
+      item.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+};
+
+
+  </script>
 </body>
 </html>
 
