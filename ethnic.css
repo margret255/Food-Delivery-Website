@@ -1,8 +1,9 @@
  
-    header .logo h1 {
-      color: #fff;
-      font-size: 2em;
-    }
+ 
+.logo-img {
+  height: 60px;   /* Adjust size as needed */
+  width: auto;
+}
 
     header .nav ul {
       display: flex;
