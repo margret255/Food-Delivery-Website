@@ -8,6 +8,27 @@
 </head>
 <body>
 
+<section class="delivery-summary">
+  <h2>Delivery Area</h2>
+
+  <div class="delivery-actions">
+    <form action="set_area.php" method="POST" class="delivery-form-inline">
+      <select name="delivery_area" required>
+        <option value="">Choose area</option>
+        <option value="Hostels A">Hostels A</option>
+        <option value="Hostels B">Hostels B</option>
+        <option value="Library">Library</option>
+        <option value="Admin Block">Admin Block</option>
+      </select>
+
+      <button type="submit" class="confirm-area">
+        Confirm Location
+      </button>
+    </form>
+  </div>
+</section>
+
+
 <div class="cart-wrapper">
     <h1>Your Cart</h1>
 
@@ -92,7 +113,7 @@ displayCart();
 function goToPayment() {
     if (cart.length === 0) {
         alert("Your cart is empty.");
-        return;
+        return;}
     }
     window.location.href = "payment.html";
 </script>

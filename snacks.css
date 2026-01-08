@@ -53,9 +53,12 @@
       transition: transform 0.3s ease;
     }
 
-    .category:hover {
-      transform: scale(1.05);
-    }
+   .category a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 
     .category img {
       width: 100%;

@@ -166,3 +166,82 @@ a.back-menu:hover {
         gap: 15px;
     }
 }
+
+/* Delivery area section (mirrors cart summary) */
+.delivery-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  flex-wrap: wrap;
+}
+
+.delivery-summary h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.delivery-actions {
+  display: flex;
+}
+
+.delivery-form-inline {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.delivery-form-inline select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  min-width: 200px;
+}
+
+.delivery-form-inline select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button.confirm-area {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button.confirm-area:hover {
+  background-color: #218838;
+}
+
+/* Responsive — matches cart behavior */
+@media (max-width: 600px) {
+  .delivery-summary {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .delivery-form-inline {
+    width: 100%;
+  }
+
+  .delivery-form-inline select {
+    width: 100%;
+  }
+
+  button.confirm-area {
+    width: 100%;
+  }
+}
+
+
+  
