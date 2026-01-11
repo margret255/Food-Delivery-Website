@@ -140,3 +140,22 @@
       text-align: center;
       padding: 20px 0;
     }
+
+    .cart-btn {
+  background-color: #f57c00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.cart-btn:hover {
+  transform: scale(1.05);
+  background-color: #ff9800;
+}
+
+.cart-btn:active {
+  transform: scale(0.95);
+}
