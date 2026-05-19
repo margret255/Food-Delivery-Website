@@ -40,7 +40,7 @@ Through this project I gained experience with:
 
 
 ### Features Page
-![Features](Screenshots/Screenshot 2026-05-19 at 11-54-36 Food Delivery.png)
+![Features]Screenshots/Screenshot 2026-05-19 at 11-54-36 Food Delivery.png
 
 ## Getting Started
 
